@@ -1,0 +1,53 @@
+<div class="card">
+  <div class="card-header">
+    <div class="float-left">
+      <h4>Tarefa</h4>
+    </div>
+  </div>
+  <div class="card-body">
+
+    <form class="needs-validation" novalidate [formGroup]="form" style="padding-top: 10px">
+
+          <div class="form-row">
+              <div class="col-sm-3">
+                <label for="titulo">Status</label>
+                <select class="form-control" id="Status" formControlName="status">
+                  <option *ngFor="let status of statusList" [value]="status.id">{{status.descricao}}</option>
+                </select>
+              </div>
+
+            </div>
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label for="titulo">Titulo</label>
+          <input type="text" class="form-control" id="titulo" placeholder="Título da Tarefa" formControlName="titulo"
+            [ngClass]="{ 'is-invalid': submitted && form.get('título').errors}" />
+          <div class="invalid-feedback">
+            Título Inválido. (Deve ter entre 10 e 50 caracteres)
+          </div>
+        </div>
+
+      </div>
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label for="descricao">Descrição</label>
+          <textarea type="text" class="form-control" id="descricao" placeholder="Descrição da Tarefa"
+            formControlName="descricao" [ngClass]="{ 'is-invalid': submitted && form.get('descricao').errors}">
+              </textarea>
+          <div class="invalid-feedback">
+            Descrição Inválida
+          </div>
+        </div>
+
+      </div>
+
+      <div style="margin-top: 10px">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
+        <button type="button" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+      </div>
+
+    </form>
+
+
+  </div>
+</div>

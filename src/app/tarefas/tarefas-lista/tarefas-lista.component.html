@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-header">
+    <div  class="float-left">
+      <h4>Tarefas</h4>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-primary" [routerLink]="'novo'">Nova Tarefa</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover" *ngIf="tarefas$ | async as tarefas; else loading">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Tarefa</th>
+          <th>Status</th>
+          <th>Criação</th>
+          <th>Edição</th>
+          <th>Remoção</th>
+          <th>Conclusão</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tarefa of tarefas">
+          <td>{{tarefa.codigo}}</td>
+          <td>{{tarefa.titulo}}</td>
+          <td>{{tarefa.status}}</td>
+          <td>{{tarefa.dataCriacao}}</td>
+          <td>{{tarefa.dataEdicao}}</td>
+          <td>{{tarefa.dataRemocao}}</td>
+          <td>{{tarefa.dataConclusao}}</td>
+          <td>
+            <span class="float-right">
+              <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEdit(tarefa.codigo)">Atualizar</button>
+              {{'  '}}
+              <button class="btn btn-outline-danger mb-1 btn-sm" (click)="delete(tarefa.codigo)">Remover</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #loading>
+      <span>Carregando Tarefas...</span>
+    </ng-template>
+  </div>
+</div>
